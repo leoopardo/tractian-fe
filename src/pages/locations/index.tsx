@@ -15,14 +15,13 @@ import { useListLocationsPerCompany } from "../../services/locations/listLocatio
 import { queryClient } from "../../services/queryClient";
 import { defaultTheme } from "../../styles/themes/default";
 import {
+  ButtonsHeader,
   LocationBreadcrumb,
   LocationContent,
   LocationHeader,
   LocationsContentContainer,
   LocationsTreeViewContainer,
   LocationsTreeViewFullBox,
-  ButtonsHeader,
-  Icon,
   RootContainer,
 } from "./styles";
 

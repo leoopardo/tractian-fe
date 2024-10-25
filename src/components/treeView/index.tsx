@@ -1,3 +1,4 @@
+import { BoltIcon } from "@heroicons/react/20/solid";
 import {
   ChevronDownIcon,
   CubeIcon,
@@ -5,11 +6,11 @@ import {
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import useDebounce from "../../hooks/useDebounce";
 import { Asset } from "../../services/assets/listAssetsPerCompany.service";
 import { Location } from "../../services/locations/listLocationsPerCompany.service";
-import { LocationList, LocationListLabel } from "./styles";
-import { BoltIcon } from "@heroicons/react/20/solid";
 import { defaultTheme } from "../../styles/themes/default";
+import { LocationList, LocationListLabel } from "./styles";
 
 interface TreeViewProps {
   locations?: Location[] | null;
@@ -31,6 +32,15 @@ export const TreeView = ({
   const { assetId } = useParams();
   const navigate = useNavigate();
   const [filteredItems, setFilteredItems] = useState<any[]>();
+  const [searchValue, setSearchValue] = useState("");
+
+  const debouncedSearch = useDebounce((value) => {
+    setSearchValue(value);
+  }, 1000);
+
+  useEffect(() => {
+    debouncedSearch(search);
+  }, [search]);
 
   useEffect(() => {
     let combinedItems = [
@@ -57,7 +67,16 @@ export const TreeView = ({
 
     const matchingItems = new Set<string>();
 
-    if (filters?.energy) {
+    if (filters?.energy && filters?.critical) {
+      combinedItems.forEach((item: any) => {
+        if (item.sensorType === "energy" && item.status === "alert") {
+          matchingItems.add(item.id);
+          findParentIds(item.id, combinedItems).forEach((parentId) =>
+            matchingItems.add(parentId)
+          );
+        }
+      });
+    } else if (filters?.energy) {
       combinedItems.forEach((item: any) => {
         if (item.sensorType === "energy") {
           matchingItems.add(item.id);
@@ -66,11 +85,9 @@ export const TreeView = ({
           );
         }
       });
-    }
-
-    if (filters?.critical) {
+    } else if (filters?.critical) {
       combinedItems.forEach((item: any) => {
-        if (item.status === "critical") {
+        if (item.status === "alert") {
           matchingItems.add(item.id);
           findParentIds(item.id, combinedItems).forEach((parentId) =>
             matchingItems.add(parentId)
@@ -86,8 +103,8 @@ export const TreeView = ({
       );
     }
 
-    if (search) {
-      const lowerCaseSearch = search.toLowerCase();
+    if (searchValue) {
+      const lowerCaseSearch = searchValue.toLowerCase();
 
       const searchMatchingItems = combinedItems.filter((item) =>
         item?.name?.toLowerCase().includes(lowerCaseSearch)
@@ -112,7 +129,7 @@ export const TreeView = ({
     }
 
     setFilteredItems(itemsToShow);
-  }, [assets, locations, search, filters]);
+  }, [assets, locations, searchValue, filters]);
 
   const toggleTree = (id: string) => {
     setOpenTrees((prev) =>
@@ -137,7 +154,7 @@ export const TreeView = ({
           <LocationList
             key={item.id}
             open={isOpen}
-            style={{ marginLeft: level * 16 }}
+            style={{ marginLeft: level > 2 ? level * 8 : level * 16 }}
           >
             <LocationListLabel
               onClick={() => toggleTree(item.id)}
@@ -155,14 +172,30 @@ export const TreeView = ({
                   }}
                 />
               )}
-              <Icon width={12} style={{ marginLeft: hasChildren ? 0 : 20 }} />
+              <Icon
+                width={18}
+                style={{
+                  marginLeft: hasChildren ? 0 : 20,
+                  color:
+                    assetId === item.id
+                      ? defaultTheme.colors.light
+                      : defaultTheme.colors.secondary,
+                }}
+              />
               {item.name}
               {item.sensorType === "energy" && (
                 <BoltIcon width={12} color={defaultTheme.colors.success} />
               )}
 
-              {item.status === "critical" && (
-                <BoltIcon width={12} color={defaultTheme.colors.error} />
+              {item.status === "alert" && (
+                <div
+                  style={{
+                    width: "8px",
+                    height: "8px",
+                    borderRadius: "50%",
+                    backgroundColor: defaultTheme.colors.error,
+                  }}
+                />
               )}
             </LocationListLabel>
             {isOpen && renderTree(items, item.id, level + 1)}
