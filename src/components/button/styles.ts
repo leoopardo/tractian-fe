@@ -32,7 +32,7 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
 
   &:hover {
     background-color: ${({ theme, variant }) =>
-      variant === "primary" ? theme.colors.secondary : theme.colors.light};
+      variant === "primary" ? theme.colors.secondary : null};
   }
 
   ${({ size }) => {
