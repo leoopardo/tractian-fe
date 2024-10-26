@@ -49,7 +49,9 @@ export const LocationsContentContainer = styled.div`
 `;
 
 export const LocationsTreeViewFullBox = styled.div`
-  width: 30%;
+  width: 30%;@media (max-width: ${(props) => props.theme.breakpoints.laptop}) {
+    width: 97%;
+  }
 `;
 
 export const AssetContentContainer = styled.div`
@@ -58,6 +60,9 @@ export const AssetContentContainer = styled.div`
   gap: 16px;
   width: 30%;
   height: 100%;
+  @media (max-width: ${(props) => props.theme.breakpoints.laptop}) {
+    width: 100%;
+  }
 `;
 
 export const LocationsTreeViewContainer = styled.div`
@@ -74,4 +79,8 @@ export const LocationContent = styled.div`
   min-height: calc(100% - 48px);
   border: ${({ theme }) => `1px solid ${theme.colors.grey}`};
   border-radius: 4px;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.laptop}) {
+    width: 100%;
+  }
 `;

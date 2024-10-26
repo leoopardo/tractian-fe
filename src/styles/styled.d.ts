@@ -15,5 +15,14 @@ declare module "styled-components" {
       pending: string;
       info: string;
     };
+    breakpoints: {
+      mobileS: string,
+      mobileM: string,
+      mobileL: string,
+      tablet: string,
+      laptop: string,
+      laptopL: string,
+      desktop: string,
+    }
   }
 }
