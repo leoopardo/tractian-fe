@@ -1,10 +1,10 @@
-# Teste front-end Tractian,
-## tecnologias utilizadas:
-- React.js;
-- Typescript;
-- Axios;
-- React query;
-- Styled components;
+# Teste front-end Tractian
+## Tecnologias utilizadas:
+- React.js
+- Typescript
+- Axios
+- React query
+- Styled components
 
 ## Como rodar o projeto
 Antes de começar, tenha certeza que o Git e Node estão devidamente instalados na sua máquina. Em seguida, siga os passos abaixo:
@@ -25,3 +25,11 @@ Antes de começar, tenha certeza que o Git e Node estão devidamente instalados 
     npm run dev
     ```
 Isso é tudo, agora você está apto para rodar este projeto.
+
+## Contato
+<a href="https://wa.me/45988369425" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="24" height="24"/>
+</a>
+<a href="https://www.linkedin.com/in/leonardo-araujo-/" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Linkedin_icon.svg" alt="LinkedIn" width="24" height="24"/>
+</a>
