@@ -11,7 +11,16 @@ export const defaultTheme: DefaultTheme = {
 
     success: "#52C41A",
     error: "#ED3833",
-    pending: "#cfa913",
+    pending: "#161307",
     info: "#55A6FF",
+  },
+  breakpoints: {
+    mobileS: "320px",
+    mobileM: "375px",
+    mobileL: "425px",
+    tablet: "768px",
+    laptop: "1024px",
+    laptopL: "1440px",
+    desktop: "2560px",
   },
 };

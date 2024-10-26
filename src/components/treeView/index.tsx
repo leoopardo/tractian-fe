@@ -227,7 +227,7 @@ export const TreeView = ({
         gap: 8,
         display: "flex",
         flexDirection: "column",
-        maxHeight: "500px",
+        height: "370px",
         overflow: "auto",
       }}
     >
