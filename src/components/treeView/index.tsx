@@ -3,6 +3,7 @@ import {
   ChevronDownIcon,
   CubeIcon,
   MapPinIcon,
+  Square3Stack3DIcon,
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -155,7 +156,12 @@ export const TreeView = ({
       ?.map((item) => {
         const isOpen = openTrees.includes(item.id);
         const hasChildren = items.some((child) => child.parentId === item.id);
-        const Icon = item.sensorType ? CubeIcon : MapPinIcon;
+        const Icon =
+          item.parentId && !item.sensorId
+            ? CubeIcon
+            : item.sensorType
+            ? Square3Stack3DIcon
+            : MapPinIcon;
 
         return (
           <LocationList
@@ -167,7 +173,9 @@ export const TreeView = ({
               onClick={() => toggleTree(item.id)}
               active={item.id === assetId ? "true" : undefined}
               onClickCapture={() =>
-                !hasChildren && item.sensorType && navigate(`assets/${item.id}`)
+                !hasChildren &&
+                (item.sensorType || item.parentId) &&
+                navigate(`assets/${item.id}`)
               }
             >
               {hasChildren && (

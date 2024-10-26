@@ -104,7 +104,7 @@ export const Asset = () => {
                 Tipo de equipamento
               </Typography>
               <Typography variant="head" size="small" style={{ opacity: 0.5 }}>
-                {(types as any)[currentAsset?.sensorType as any]}
+                {(types as any)[currentAsset?.sensorType as any]  || "Não especificado"}
               </Typography>
             </div>
             <hr
@@ -115,7 +115,7 @@ export const Asset = () => {
                 Situação
               </Typography>
               <Typography variant="head" size="small" style={{ opacity: 0.5 }}>
-                {(status as any)[currentAsset?.status as any]}
+                {(status as any)[currentAsset?.status as any]  || "Não especificado"}
               </Typography>
             </div>
           </AssetInfo>
@@ -150,7 +150,7 @@ export const Asset = () => {
               }}
             >
               <RssIcon width={20} color={defaultTheme.colors.secondary} />{" "}
-              {currentAsset?.sensorId}
+              {currentAsset?.sensorId  || "Não especificado"}
             </Typography>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -168,7 +168,7 @@ export const Asset = () => {
               }}
             >
               <RadioIcon width={20} color={defaultTheme.colors.secondary} />{" "}
-              {currentAsset?.gatewayId}
+              {currentAsset?.gatewayId || "Não especificado"}
             </Typography>
           </div>
         </AssetFirstSecction>
