@@ -66,6 +66,7 @@ export const LocationsTreeViewContainer = styled.div`
   border: ${({ theme }) => `1px solid ${theme.colors.grey}`};
   border-top: none;
   padding-left: 24px;
+  padding-top: 8px;
 `;
 
 export const LocationContent = styled.div`

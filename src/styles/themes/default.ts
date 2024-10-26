@@ -12,6 +12,6 @@ export const defaultTheme: DefaultTheme = {
     success: "#52C41A",
     error: "#ED3833",
     pending: "#cfa913",
-    info: "#4682B4",
+    info: "#55A6FF",
   },
 };

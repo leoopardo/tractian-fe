@@ -5,7 +5,7 @@ import {
   MapPinIcon,
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useDebounce from "../../hooks/useDebounce";
 import { Asset } from "../../services/assets/listAssetsPerCompany.service";
 import { Location } from "../../services/locations/listLocationsPerCompany.service";
@@ -33,10 +33,17 @@ export const TreeView = ({
   const navigate = useNavigate();
   const [filteredItems, setFilteredItems] = useState<any[]>();
   const [searchValue, setSearchValue] = useState("");
+  const location = useLocation();
 
   const debouncedSearch = useDebounce((value) => {
     setSearchValue(value);
   }, 1000);
+
+  useEffect(() => {
+    if (!assetId && assets) {
+      navigate(`assets/${assets.filter((asset) => asset.sensorType)[0].id}`);
+    }
+  }, [assetId, assets, location]);
 
   useEffect(() => {
     debouncedSearch(search);
@@ -97,7 +104,7 @@ export const TreeView = ({
     }
 
     let itemsToShow = combinedItems;
-    if (matchingItems.size > 0) {
+    if (filters?.energy || filters?.critical || searchValue) {
       itemsToShow = combinedItems.filter((item: any) =>
         matchingItems.has(item.id)
       );
@@ -183,19 +190,29 @@ export const TreeView = ({
                 }}
               />
               {item.name}
-              {item.sensorType === "energy" && (
-                <BoltIcon width={12} color={defaultTheme.colors.success} />
-              )}
-
-              {item.status === "alert" && (
+              {item.sensorType === "energy" ? (
+                <BoltIcon
+                  width={12}
+                  color={
+                    item.status === "alert"
+                      ? defaultTheme.colors.error
+                      : defaultTheme.colors.success
+                  }
+                />
+              ) : ["operating", "alert"].includes(item.status) ? (
                 <div
                   style={{
                     width: "8px",
                     height: "8px",
                     borderRadius: "50%",
-                    backgroundColor: defaultTheme.colors.error,
+                    backgroundColor:
+                      item.status === "alert"
+                        ? defaultTheme.colors.error
+                        : defaultTheme.colors.success,
                   }}
                 />
+              ) : (
+                <> </>
               )}
             </LocationListLabel>
             {isOpen && renderTree(items, item.id, level + 1)}
