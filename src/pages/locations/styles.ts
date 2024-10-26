@@ -49,7 +49,8 @@ export const LocationsContentContainer = styled.div`
 `;
 
 export const LocationsTreeViewFullBox = styled.div`
-  width: 30%;@media (max-width: ${(props) => props.theme.breakpoints.laptop}) {
+  width: 30%;
+  @media (max-width: ${(props) => props.theme.breakpoints.laptop}) {
     width: 97%;
   }
 `;

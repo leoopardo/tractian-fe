@@ -15,4 +15,5 @@ export const GlobalStyle = createGlobalStyle`
 
     ::-webkit-scrollbar {
   width: 6px;
-}`;
+}
+`;
