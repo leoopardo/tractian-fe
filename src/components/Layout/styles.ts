@@ -25,7 +25,7 @@ export const ButtonContainer = styled.div`
   gap: 8px;
 `;
 
-export const LayoutBody = styled.body(() => ({
+export const LayoutBody = styled.div(() => ({
   display: "flex",
   backgroundColor: "#e4ebf0",
   minHeight: "calc(100% - 90px)",

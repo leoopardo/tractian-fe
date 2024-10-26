@@ -57,7 +57,7 @@ export const Locations = () => {
             onClick={() => {
               setFilters({ ...filters, energy: !filters.energy });
             }}
-            active={filters.energy}
+            active={filters.energy || undefined}
             size="medium"
             variant="secondary"
             icon={
@@ -77,7 +77,7 @@ export const Locations = () => {
             onClick={() => {
               setFilters({ ...filters, critical: !filters.critical });
             }}
-            active={filters.critical}
+            active={filters.critical || undefined}
             size="medium"
             variant="secondary"
             icon={

@@ -165,7 +165,7 @@ export const TreeView = ({
           >
             <LocationListLabel
               onClick={() => toggleTree(item.id)}
-              active={item.id === assetId}
+              active={item.id === assetId ? "true" : undefined}
               onClickCapture={() =>
                 !hasChildren && item.sensorType && navigate(`assets/${item.id}`)
               }

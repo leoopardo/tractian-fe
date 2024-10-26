@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LocationList = styled.li<{ open: boolean }>`
+export const LocationList = styled.div<{ open: boolean }>`
   display: flex;
   list-style: none;
   flex-direction: column;
@@ -8,7 +8,7 @@ export const LocationList = styled.li<{ open: boolean }>`
   gap: 8px;
 `;
 
-export const LocationListLabel = styled.li<{ active: boolean }>`
+export const LocationListLabel = styled.div<{ active?: string }>`
   display: flex;
   align-items: center;
   list-style: none;
@@ -23,13 +23,13 @@ export const LocationListLabel = styled.li<{ active: boolean }>`
   }
 
   ${({ active, theme }) =>
-    active &&
+    active === "true" &&
     `
     background-color: ${theme.colors.secondary};
   `}
 `;
 
-export const LocationListSubItemLabel = styled.li<{ index: number }>`
+export const LocationListSubItemLabel = styled.div<{ index: number }>`
   display: flex;
   list-style: none;
   gap: 8px;

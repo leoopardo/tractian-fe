@@ -21,7 +21,12 @@ export const Typography = ({
   const Component = TypographyStyles[variant];
 
   return (
-    <Component size={size} bold={bold} color={color} style={style}>
+    <Component
+      size={size}
+      bold={bold ? "true" : "false"}
+      color={color}
+      style={style}
+    >
       {children}
     </Component>
   );

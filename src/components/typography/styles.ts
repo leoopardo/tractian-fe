@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 interface TypographyProps {
   size: "small" | "medium" | "large";
-  bold?: boolean;
+  bold?: string;
   color?: string;
 }
 
 const head = styled.h1<TypographyProps>(({ size, theme, bold, color }) => ({
   fontSize: size === "small" ? "16px" : size === "medium" ? "24px" : "32px",
-  fontWeight: bold ? "bold" : "normal",
+  fontWeight: bold === "true" ? "bold" : "normal",
   color: color || theme.colors.dark,
   margin: "0",
   padding: "0",
@@ -16,7 +16,7 @@ const head = styled.h1<TypographyProps>(({ size, theme, bold, color }) => ({
 
 const content = styled.p<TypographyProps>(({ size, theme, bold, color }) => ({
   fontSize: size === "small" ? "16px" : size === "medium" ? "24px" : "32px",
-  fontWeight: bold ? "bold" : "normal",
+  fontWeight: bold === "true"? "bold" : "normal",
   color: color || theme.colors.dark,
   margin: "0",
   padding: "0",
