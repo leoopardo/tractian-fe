@@ -28,7 +28,7 @@ export const Button = ({
   return (
     <ButtonStyle
       variant={variant}
-      active={active}
+      active={active ? "true" : "false"}
       disabled={disabled}
       type={type}
       onClick={onClick}

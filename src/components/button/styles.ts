@@ -3,7 +3,7 @@ import styled from "styled-components";
 interface ButtonStyleProps {
   theme: any;
   variant: "primary" | "secondary";
-  active?: boolean;
+  active?: string;
   disabled?: boolean;
   size: "small" | "medium" | "large";
 }
@@ -56,7 +56,7 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
   }}
 
   ${({ theme, active }) =>
-    active &&
+    active === "true" &&
     ` 
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       background-color: ${theme.colors.secondary};

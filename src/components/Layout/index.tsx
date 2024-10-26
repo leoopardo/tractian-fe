@@ -36,6 +36,7 @@ export const Layout = () => {
                 }}
                 icon={<Square3Stack3DIcon width={14} />}
                 active={company.id === companyId}
+                key={company.id}
               >
                 {company.name} Unit
               </Button>
